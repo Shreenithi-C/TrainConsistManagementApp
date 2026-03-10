@@ -2,7 +2,7 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 2.0
+ * @version 3.0
  */
 import java.util.*;
 
@@ -10,25 +10,25 @@ public class Main {
 	
 	public static void main(String[] args)
 	{
-		System.out.println("===========================================");
-		System.out.println("=== UC2 - Add Passenger Bogies to Train ===");
-		System.out.println("===========================================");
+		System.out.println("====================================");
+		System.out.println("=== UC3 - Track Unique Bogie IDs ===");
+		System.out.println("====================================\n");
 	
-		List<String> PassengerBogies = new ArrayList<>();
-		PassengerBogies.add("Sleeper");
-		PassengerBogies.add("AC Chair");
-		PassengerBogies.add("First Class");
+		Set<String> Bogies = new HashSet<>();
 		
-		System.out.println("\nAfter adding Bogies:");
-		System.out.println("PassengerBogies:"+PassengerBogies);
+		//Add bogies with duplicates
+		Bogies.add("BG101");
+		Bogies.add("BG102");
+		Bogies.add("BG103");
+		Bogies.add("BG104");
+		Bogies.add("BG101");
+		Bogies.add("BG102");
 		
-		System.out.println("\nAfter removing AC chair:");
-		PassengerBogies.remove("AC Chair");
-		System.out.println("PassengerBogies:"+PassengerBogies);
+		System.out.println("Bogie IDs after insertion:");
+		System.out.println(Bogies);
 		
-		System.out.println("\nChecking if 'Sleeper' exists:\nContains Sleeper? : "+PassengerBogies.contains("Sleeper"));
-		System.out.println("\nFinal Train Passenger Consist:"+PassengerBogies);
+		System.out.println("\nNote: Duplicates are automatically ignored by HashSet");
+		System.out.println("\nUC3 uniqueness validation completed...");
 		
-		System.out.println("\nUC2 operations completed successfully...");	
 	}
 }
