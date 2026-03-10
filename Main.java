@@ -2,9 +2,11 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 7.0
+ * @version 8.0
  */
+
 import java.util.*;
+import java.util.stream.*;
 
 public class Main {
 	
@@ -29,10 +31,11 @@ public class Main {
 	
 	public static void main(String[] args)
 	{
-		System.out.println("==================================================");
-		System.out.println("=== UC7 - Sort Bogies by Capacity (Comparator) ===");
-		System.out.println("==================================================\n");
-	
+		System.out.println("===================================================");
+		System.out.println("=== UC8 - Filter Passenger Bogies using Streams ===");
+		System.out.println("===================================================\n");
+	    
+		//Create list of passenger bogies
 		List<Bogie> bogies=new ArrayList<>();
 		
 		bogies.add(new Bogie("Sleeper",72));
@@ -40,19 +43,20 @@ public class Main {
 		bogies.add(new Bogie("First Class",24));
 		bogies.add(new Bogie("General",90));
 		
-		System.out.println("Before sorting:");
+		System.out.println("All Bogies:");
 		for(Bogie b:bogies)
 		{
 			System.out.println(b);
 		}	
 		
-		System.out.println("\nAfter sorting by capacity:");
-		bogies.sort(Comparator.comparingInt(b->b.capacity));
-		for(Bogie b:bogies)
+		List<Bogie> filteredBogies= bogies.stream().filter(b->b.capacity>60).collect(Collectors.toList());
+		
+		System.out.println("\nFiltered Bogies (Capacity>60):");
+		for(Bogie b:filteredBogies)
 		{
 			System.out.println(b);
 		}
 		
-		System.out.println("\nUC7 sorting completed...");
+		System.out.println("\nUC8 filtering completed...");
 	}
 }
