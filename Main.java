@@ -2,57 +2,45 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 10.0
+ * @version 11.0
  */
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.Scanner;
+import java.util.regex.*;
 
 public class Main {
-	
-	//Inner Bogie class to model passenger bogies
-	static class Bogie
-	{
-		String name;
-		int capacity;
-		
-		Bogie(String name,int capacity)
-		{
-			this.name=name;
-			this.capacity=capacity;
-		}
-		
-		@Override
-		public String toString()
-		{
-			return name+":"+capacity;
-		}
-	}
-	
-	public static void main(String[] args)
-	{
-		System.out.println("=========================================");
-		System.out.println("=== UC10 - Count total seats in train ===");
-		System.out.println("=========================================\n");
-	    
-		//Create list of passenger bogies
-		List<Bogie> bogies=new ArrayList<>();
-		
-		bogies.add(new Bogie("Sleeper",72));
-		bogies.add(new Bogie("AC chair",56));
-		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("Sleeper",70));
-		
-		System.out.println("Bogies in train:");
-		for(Bogie b:bogies)
-		{
-			System.out.println(b);
-		}	
-		
-		int totalCapacity= bogies.stream().map(b->b.capacity).reduce(0,Integer::sum);
-		
-		System.out.println("\nTotal Seating Capacity of Train: " + totalCapacity);
-		
-		System.out.println("\nUC10 Aggregation completed...");
-	}
+    public static void main(String[] args) {
+        System.out.println("===============================================");
+        System.out.println("=== UC11 - Validate Train ID and Cargo Code ===");
+        System.out.println("===============================================\n");
+
+        Scanner sc = new Scanner(System.in);
+
+        // Prompt user for Train ID
+        System.out.print("Enter Train ID (Format: TRN-1234): ");
+        String trainId = sc.nextLine();
+
+        // Prompt user for Cargo Code
+        System.out.print("Enter Cargo Code (Format: PET-AB): ");
+        String cargoCode = sc.nextLine();
+
+        // Define regex patterns
+        String trainIdPattern = "TRN-\\d{4}";       // TRN- followed by 4 digits
+        String cargoCodePattern = "PET-[A-Z]{2}";   // PET- followed by 2 uppercase letters
+
+        // Compile patterns
+        Pattern trainPattern = Pattern.compile(trainIdPattern);
+        Pattern cargoPattern = Pattern.compile(cargoCodePattern);
+
+        // Match inputs
+        boolean isTrainIdValid = trainPattern.matcher(trainId).matches();
+        boolean isCargoCodeValid = cargoPattern.matcher(cargoCode).matches();
+
+        // Display results
+        System.out.println("\nValidation Results:");
+        System.out.println("Train ID Valid: " + isTrainIdValid);
+        System.out.println("Cargo Code Valid: " + isCargoCodeValid);
+
+        System.out.println("\nUC11 validation completed...");
+    }
 }
