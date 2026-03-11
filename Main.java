@@ -2,63 +2,41 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 15.0
+ * @version 16.0
  */
 
-//Custom runtime exception for unsafe cargo assignment
-class CargoSafetyException extends RuntimeException {
- public CargoSafetyException(String message) {
-     super(message);
- }
-}
-
 public class Main {
- 
- // Goods Bogie class
- static class GoodsBogie {
-     String shape;
-     String cargo;
-     
-     GoodsBogie(String shape) {
-         this.shape = shape;
-     }
-     
-     // Assign cargo with validation
-     void assignCargo(String cargo) {
-         try {
-             // Rule: Petroleum cannot be assigned to Rectangular bogies
-             if (shape.equals("Rectangular") && cargo.equals("Petroleum")) {
-                 throw new CargoSafetyException("Unsafe cargo assignment!");
-             }
-             
-             this.cargo = cargo;
-             System.out.println("Cargo assigned successfully -> " + cargo);
-             System.out.println("Cargo validation completed for " + shape + " bogie");
-             
-         } catch (CargoSafetyException e) {
-             System.out.println("Error: " + e.getMessage());
-             System.out.println("Cargo validation completed for " + shape + " bogie");
-         } finally {
-             System.out.println("Logging: Cargo assignment attempt finished for " + shape + " bogie");
-         }
-     }
- }
- 
- public static void main(String[] args) {
-     System.out.println("===========================================");
-     System.out.println("====== UC15 - Safe Cargo Assignment ======");
-     System.out.println("===========================================\n");
-     
-     // Valid assignment
-     GoodsBogie cylindrical = new GoodsBogie("Cylindrical");
-     cylindrical.assignCargo("Petroleum");
-     
-     System.out.println();
-     
-     // Unsafe assignment
-     GoodsBogie rectangular = new GoodsBogie("Rectangular");
-     rectangular.assignCargo("Petroleum");
-     
-     System.out.println("\nUC15 runtime handling completed...");
- }
+    public static void main(String[] args) {
+        System.out.println("==================================================");
+        System.out.println("=== UC16 - Manual Sorting using Bubble Sort ===");
+        System.out.println("==================================================\n");
+
+        // Original capacities
+        int[] capacities = {72, 56, 24, 70, 60};
+
+        System.out.println("Original Capacities:");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+        System.out.println();
+
+        // Bubble Sort Algorithm
+        for (int i = 0; i < capacities.length - 1; i++) {
+            for (int j = 0; j < capacities.length - i - 1; j++) {
+                if (capacities[j] > capacities[j + 1]) {
+                    // Swap
+                    int temp = capacities[j];
+                    capacities[j] = capacities[j + 1];
+                    capacities[j + 1] = temp;
+                }
+            }
+        }
+
+        System.out.println("\nSorted Capacities (Ascending):");
+        for (int c : capacities) {
+            System.out.print(c + " ");
+        }
+
+        System.out.println("\n\nUC16 sorting completed...");
+    }
 }
