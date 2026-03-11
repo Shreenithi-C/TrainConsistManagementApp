@@ -2,19 +2,21 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 18.0
+ * @version 19.0
  */
+
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("===========================================");
-        System.out.println("=== UC18 - Linear Search for Bogie ID ===");
+        System.out.println("=== UC19 - Binary Search for Bogie ID ===");
         System.out.println("===========================================\n");
 
-        // Array of bogie IDs
+        // Sorted array of bogie IDs
         String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        System.out.println("Available Bogie IDs:");
+        System.out.println("Sorted Bogie IDs:");
         for (String id : bogieIds) {
             System.out.println(id);
         }
@@ -22,13 +24,23 @@ public class Main {
         // Search key
         String searchKey = "BG309";
 
-        // Linear Search
+        // Binary Search
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
-        for (String id : bogieIds) {
-            if (id.equals(searchKey)) {
-                System.out.println("\nBogie " + searchKey + " found in train consist.");
+
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            int comparison = searchKey.compareTo(bogieIds[mid]);
+
+            if (comparison == 0) {
+                System.out.println("\nBogie " + searchKey + " found using Binary Search.");
                 found = true;
-                break; // Early termination
+                break;
+            } else if (comparison < 0) {
+                high = mid - 1; // search left half
+            } else {
+                low = mid + 1; // search right half
             }
         }
 
@@ -36,7 +48,6 @@ public class Main {
             System.out.println("\nBogie " + searchKey + " not found in train consist.");
         }
 
-        System.out.println("\nUC18 search completed...");
+        System.out.println("\nUC19 search completed...");
     }
 }
-
