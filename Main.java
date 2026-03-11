@@ -36,7 +36,7 @@ public class Main {
         goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
         goodsBogies.add(new GoodsBogie("Open", "Coal"));
         goodsBogies.add(new GoodsBogie("Box", "Grain"));
-        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal")); // ❌ unsafe
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Coal")); //unsafe
         
         System.out.println("Goods Bogies in Train:");
         goodsBogies.forEach(System.out::println);
