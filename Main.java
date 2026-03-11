@@ -2,7 +2,7 @@ package com.TrainConsistManagementApp.consist;
 
 /*
  * @author developer
- * @version 8.0
+ * @version 9.0
  */
 
 import java.util.*;
@@ -41,7 +41,8 @@ public class Main {
 		bogies.add(new Bogie("Sleeper",72));
 		bogies.add(new Bogie("AC chair",56));
 		bogies.add(new Bogie("First Class",24));
-		bogies.add(new Bogie("General",90));
+		bogies.add(new Bogie("Sleeper",70));
+		bogies.add(new Bogie("AC chair",60));
 		
 		System.out.println("All Bogies:");
 		for(Bogie b:bogies)
@@ -49,14 +50,17 @@ public class Main {
 			System.out.println(b);
 		}	
 		
-		List<Bogie> filteredBogies= bogies.stream().filter(b->b.capacity>60).collect(Collectors.toList());
+		Map<String,List<Bogie>> groupedBogies=bogies.stream().collect(Collectors.groupingBy(b->b.name));
 		
-		System.out.println("\nFiltered Bogies (Capacity>60):");
-		for(Bogie b:filteredBogies)
+		System.out.println("\nGrouped Bogies:");
+		for(Map.Entry<String,List<Bogie>> entry:groupedBogies.entrySet())
 		{
-			System.out.println(b);
+			System.out.println("\nBogie Type:"+entry.getKey());
+			for(Bogie b:entry.getValue())
+			{
+				System.out.println("Capacity->"+b.capacity);
+			}
 		}
-		
-		System.out.println("\nUC8 filtering completed...");
+		System.out.println("\nUC9 grouping completed...");
 	}
 }
