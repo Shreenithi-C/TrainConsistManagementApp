@@ -31,9 +31,9 @@ public class Main {
 	
 	public static void main(String[] args)
 	{
-		System.out.println("===================================================");
-		System.out.println("=== UC8 - Filter Passenger Bogies using Streams ===");
-		System.out.println("===================================================\n");
+		System.out.println("==================================");
+		System.out.println("=== UC9 - Group Bogies by Type ===");
+		System.out.println("==================================\n");
 	    
 		//Create list of passenger bogies
 		List<Bogie> bogies=new ArrayList<>();
